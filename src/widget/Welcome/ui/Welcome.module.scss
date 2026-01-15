@@ -1,32 +1,58 @@
 .main {
-  padding: 32px 200px;
+  padding: 32px 125px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
 }
 
-.main h1 {
+.content {
+  flex: 1;
+}
+
+.image {
+  margin-top: -40px;
+  max-width: 400px;
+  height: auto;
+}
+
+.content h1 {
   font-weight: 700;
-  font-size: 75px;
-  line-height: 75px;
+  font-size: 72px;
+  line-height: 101.01%;
   max-width: 600px;
 }
 
-.main .description {
+.content h2 {
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 101.01%;
+  max-width: 600px;
+}
+
+.content .description {
   font-size: 24px;
   line-height: 29px;
-  padding: 30px 0;
+  padding: 50px 0;
   max-width: 740px;
 }
 
-.main .blocks {
+.content .blocks {
   font-size: 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20px 0;
-  padding-left: 125px;
+  padding-left: 100px;
   gap: 55px;
 }
 
-.main button {
+.content .blocks p {
+  border: 2px solid #000cf9;
+  border-radius: 8px;
+  padding: 5px 7px;
+}
+
+.content button {
   margin: 30px 0;
   margin-left: 232px;
   padding: 15px 60px;
@@ -40,6 +66,6 @@
   cursor: pointer;
 }
 
-.main button:hover {
+.content button:hover {
   background: #0000e6;
 }
