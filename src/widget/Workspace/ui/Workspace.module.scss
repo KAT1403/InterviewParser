@@ -62,19 +62,3 @@
   font-weight: bold;
   flex-shrink: 0;
 }
-
-.block button {
-  background: #000CF9;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.block button:hover {
-  background : #0000e6;
-}

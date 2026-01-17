@@ -3,6 +3,7 @@ import Welcome from "@/widget/Welcome";
 import styles from "./HomePage.module.scss";
 import How from "@/widget/How";
 import Workspace from "@/widget/Workspace";
+import Who from "@/widget/Who";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Welcome />
       <How />
       <Workspace />
+      <Who />
     </div>
   );
 }

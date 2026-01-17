@@ -1,4 +1,5 @@
 import styles from "./Welcome.module.scss";
+import Button from "../../../shared/ui/Button";
 
 function Welcome() {
   return (
@@ -16,7 +17,7 @@ function Welcome() {
           <p>Real-time Recording</p>
           <p>Detailed Analytics</p>
         </div>
-        <button>Start Interview</button>
+        <Button size="large" className={styles.startButton}>Start Interview</Button>
       </div>
       <img src="/img/Welcome.png" alt="Welcome" className={styles.image} />
     </div>

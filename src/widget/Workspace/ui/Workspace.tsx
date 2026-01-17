@@ -1,4 +1,5 @@
 import styles from "./Workspace.module.scss";
+import Button from "../../../shared/ui/Button";
 
 function Workspace() {
   return (
@@ -19,7 +20,7 @@ function Workspace() {
             <li>Real-time processing progress</li>
             <li>Instant transcription and analysis</li>
           </ul>
-          <button>Upload Files→</button>
+          <Button size="small">Upload Files→</Button>
         </div>
 
         <div className={styles.block}>
@@ -36,7 +37,7 @@ function Workspace() {
             <li>Live transcription display</li>
             <li>Comprehensive voice analytics</li>
           </ul>
-          <button>Start Voice Session→</button>
+          <Button size="small">Start Voice Session→</Button>
         </div>
 
         <div className={styles.block}>
@@ -52,7 +53,7 @@ function Workspace() {
             <li>Filter by date range</li>
             <li>Export interview data</li>
           </ul>
-          <button>Manage Interviews→</button>
+          <Button size="small">Manage Interviews→</Button>
         </div>
 
         <div className={styles.block}>
@@ -69,7 +70,7 @@ function Workspace() {
             <li>Best and worst interview highlights</li>
             <li>Custom date range filtering</li>
           </ul>
-          <button>View Analytics→</button>
+          <Button size="small">View Analytics→</Button>
         </div>
       </div>
     </div>
