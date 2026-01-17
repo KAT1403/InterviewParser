@@ -60,7 +60,7 @@ function Workspace() {
           <p>
             Gain deep insights into your interview performance with
             comprehensive analytics, trends, and detailed metrics to track your
-            improvement.
+            improvement and areas for development.
           </p>
           <ul>
             <li>Performance trends over time</li>
