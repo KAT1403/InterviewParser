@@ -1,1 +1,3 @@
-export { default as InterviewGuide } from "./ui/InterviewGuide";
+import InterviewGuide from "./ui/InterviewGuide";
+
+export default InterviewGuide;

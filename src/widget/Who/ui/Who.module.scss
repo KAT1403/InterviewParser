@@ -1,5 +1,5 @@
 .content {
-  padding: 30px 125px;
+  padding: 30px 20px;
   width: 100%;
   height: auto;
   text-align: center;
@@ -102,4 +102,129 @@
 .takeBtn:hover {
   color: #FFFFFF;
   background: #000CF9;
+}
+
+@media (min-width: 1200px) {
+  .content {
+    padding: 30px 125px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .content {
+    padding: 30px 40px;
+  }
+  
+  .content h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .left,
+  .right {
+    padding: 25px;
+    min-height: 500px;
+  }
+  
+  .left h3,
+  .right h3 {
+    font-size: 28px;
+  }
+  
+  .description {
+    font-size: 14px;
+    height: auto;
+  }
+  
+  .left ul,
+  .right ul {
+    height: auto;
+  }
+  
+  .left li,
+  .right li {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding: 20px 16px;
+  }
+  
+  .content h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .left,
+  .right {
+    display: block;
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    min-height: auto;
+  }
+  
+  .left img,
+  .right img {
+    height: 150px;
+  }
+  
+  .left h3,
+  .right h3 {
+    font-size: 24px;
+  }
+  
+  .description {
+    font-size: 14px;
+    height: auto;
+  }
+  
+  .left ul,
+  .right ul {
+    height: auto;
+    margin: 15px 0;
+  }
+  
+  .left li,
+  .right li {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .takeBtn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h2 {
+    font-size: 28px;
+  }
+  
+  .left h3,
+  .right h3 {
+    font-size: 20px;
+  }
+  
+  .description {
+    font-size: 13px;
+  }
+  
+  .left li,
+  .right li {
+    font-size: 13px;
+  }
+  
+  .secBtn,
+  .takeBtn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }

@@ -1,1 +1,3 @@
-export { default as InterviewSettings } from "./ui/InterviewSettings";
+import InterviewSettings from "./ui/InterviewSettings";
+
+export default InterviewSettings;

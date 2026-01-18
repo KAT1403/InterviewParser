@@ -1,5 +1,5 @@
 .content {
-  padding: 0 125px 50px 125px;
+  padding: 0 20px 50px 20px;
   text-align: center;
 }
 
@@ -46,4 +46,84 @@
   width: 60px;
   height: 170px;
   flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+  .content {
+    padding: 0 125px 50px 125px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .content {
+    padding: 0 40px 40px 40px;
+  }
+  
+  .title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  
+  .steps {
+    gap: 15px;
+  }
+  
+  .step {
+    padding: 25px 15px;
+    max-width: 200px;
+  }
+  
+  .step h4 {
+    font-size: 16px;
+  }
+  
+  .step p {
+    font-size: 13px;
+  }
+  
+  .image {
+    width: 50px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding: 0 16px 30px 16px;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .steps {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .step {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px 15px;
+  }
+  
+  .image {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+  
+  .step h4 {
+    font-size: 16px;
+  }
+  
+  .step p {
+    font-size: 12px;
+  }
 }

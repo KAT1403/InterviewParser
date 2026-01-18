@@ -1,8 +1,8 @@
 import Header from "@/widget/Header";
 import styles from "./InterviewPage.module.scss";
 import InterviewWelcome from "@/widget/InterwiewWelcome";
-import { InterviewSettings } from "@/widget/InterviewSettings";
-import { InterviewGuide } from "@/widget/InterviewGuide";
+import InterviewSettings from "@/widget/InterviewSettings";
+import InterviewGuide from "@/widget/InterviewGuide";
 
 export default function InterviewPage() {
   return (
