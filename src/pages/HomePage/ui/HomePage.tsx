@@ -9,10 +9,12 @@ export default function HomePage() {
   return (
     <div className={styles.container}>
       <Header />
-      <Welcome />
-      <How />
-      <Workspace />
-      <Who />
+      <div className={styles.content}>
+        <Welcome />
+        <How />
+        <Workspace />
+        <Who />
+      </div>
     </div>
   );
 }

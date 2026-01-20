@@ -69,27 +69,37 @@
   justify-content: center;
 }
 
+.demoBtn,
 .secBtn {
-  background: #5A66FF;
-  color: #FFFFFF;
-  border: none;
+  background: #5a66ff;
+  color: #ffffff;
+  border: 2px solid transparent;
   border-radius: 8px;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  flex: 1;
+  width: calc(50% - 10px);
   transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.demoBtn {
+  background: #000cf9;
+}
+
+.demoBtn:hover {
+  background: #3333ff;
 }
 
 .secBtn:hover {
-  background: #454FBF;
+  background: #454fbf;
 }
 
 .takeBtn {
   background: transparent;
-  color: #000CF9;
-  border: 2px solid #000CF9;
+  color: #000cf9;
+  border: 2px solid #000cf9;
   border-radius: 8px;
   padding: 12px 24px;
   font-size: 16px;
@@ -97,11 +107,12 @@
   cursor: pointer;
   width: 50%;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .takeBtn:hover {
-  color: #FFFFFF;
-  background: #000CF9;
+  color: #ffffff;
+  background: #000cf9;
 }
 
 @media (min-width: 1200px) {
@@ -114,33 +125,33 @@
   .content {
     padding: 30px 40px;
   }
-  
+
   .content h2 {
     font-size: 36px;
     margin-bottom: 40px;
   }
-  
+
   .left,
   .right {
     padding: 25px;
     min-height: 500px;
   }
-  
+
   .left h3,
   .right h3 {
     font-size: 28px;
   }
-  
+
   .description {
     font-size: 14px;
     height: auto;
   }
-  
+
   .left ul,
   .right ul {
     height: auto;
   }
-  
+
   .left li,
   .right li {
     font-size: 16px;
@@ -151,12 +162,12 @@
   .content {
     padding: 20px 16px;
   }
-  
+
   .content h2 {
     font-size: 32px;
     margin-bottom: 30px;
   }
-  
+
   .left,
   .right {
     display: block;
@@ -165,39 +176,39 @@
     padding: 20px;
     min-height: auto;
   }
-  
+
   .left img,
   .right img {
     height: 150px;
   }
-  
+
   .left h3,
   .right h3 {
     font-size: 24px;
   }
-  
+
   .description {
     font-size: 14px;
     height: auto;
   }
-  
+
   .left ul,
   .right ul {
     height: auto;
     margin: 15px 0;
   }
-  
+
   .left li,
   .right li {
     font-size: 14px;
     margin-bottom: 10px;
   }
-  
+
   .buttons {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .takeBtn {
     width: 100%;
   }
@@ -207,21 +218,21 @@
   .content h2 {
     font-size: 28px;
   }
-  
+
   .left h3,
   .right h3 {
     font-size: 20px;
   }
-  
+
   .description {
     font-size: 13px;
   }
-  
+
   .left li,
   .right li {
     font-size: 13px;
   }
-  
+
   .secBtn,
   .takeBtn {
     font-size: 14px;

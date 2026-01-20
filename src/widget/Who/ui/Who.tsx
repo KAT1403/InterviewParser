@@ -1,5 +1,4 @@
 import styles from "./Who.module.scss";
-import Button from "../../../shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 
 function Who() {
@@ -21,7 +20,7 @@ function Who() {
           <li>Ready-to-use report for each candidate</li>
         </ul>
         <div className={styles.buttons}>
-          <Button size="medium">Request a demo</Button>
+          <button className={styles.demoBtn}>Request a demo</button>
           <button className={styles.secBtn}>View a sample report</button>
         </div>
       </div>
