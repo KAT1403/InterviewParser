@@ -1,0 +1,17 @@
+.container {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+  }
+}

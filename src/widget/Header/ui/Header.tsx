@@ -8,7 +8,7 @@ function Header() {
       <div className={styles.line}>
         <Link to="/interview"><h5>Voice interview</h5></Link>
         <Link to="/analytics"><h5>Analytics</h5></Link>
-        <h5>Profile</h5>
+        <Link to="/profile"><h5>Profile</h5></Link>
       </div>
     </div>
   );

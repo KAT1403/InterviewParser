@@ -1,27 +1,46 @@
+import { useState, useEffect } from "react";
 import Header from "@/widget/Header";
 import AnalyticsHero from "@/widget/AnalyticsHero";
 import AnalyticsMetrics from "@/widget/AnalyticsMetrics";
+import { analyticsApi, type GlobalAnalytics } from "@/shared/api";
 import styles from "./AnalyticsPage.module.scss";
 
 export default function AnalyticsPage() {
-  const mockAnalytics = {
-    total_interviews: 100,
-    total_questions: 200,
-    total_answered: 145,
-    global_answered_percent: 70,
-    global_average_accuracy: 70,
-    best_interview_id: 1234,
-    best_interview_score: 92,
-    worst_interview_id: 4321,
-    worst_interview_score: 41,
-  };
+  const [analytics, setAnalytics] = useState<GlobalAnalytics | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        const data = await analyticsApi.getGlobalAnalytics();
+        setAnalytics(data);
+      } catch (error) {
+        console.error('Ошибка запроса:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnalytics();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <Header />
+        <div className={styles.content}>
+          <div>Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
         <AnalyticsHero />
-        <AnalyticsMetrics data={mockAnalytics} />
+        {analytics && <AnalyticsMetrics data={analytics} />}
       </div>
     </div>
   );
