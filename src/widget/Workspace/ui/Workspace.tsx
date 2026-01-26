@@ -73,7 +73,7 @@ function Workspace() {
             <li>Best and worst interview highlights</li>
             <li>Custom date range filtering</li>
           </ul>
-          <Button size="small">View Analytics→</Button>
+          <Button size="small" onClick={() => navigate("/analytics")}>View Analytics→</Button>
         </div>
       </div>
     </div>
