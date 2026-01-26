@@ -56,7 +56,7 @@ function Workspace() {
             <li>Filter by date range</li>
             <li>Export interview data</li>
           </ul>
-          <Button size="small">Manage Interviews→</Button>
+          <Button size="small" onClick={() => navigate("/management")}>Manage Interviews→</Button>
         </div>
 
         <div className={styles.block}>

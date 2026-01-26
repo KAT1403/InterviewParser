@@ -5,6 +5,7 @@ import InterviewPage from "@/pages/InterviewPage/ui/InterviewPage";
 import AnalyticsPage from "@/pages/AnalyticsPage";
 import ProfilePage from "@/pages/ProfilePage";
 import ResultPage from "@/pages/ResultPage";
+import ManagementPage from "@/pages/ManagementPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/interview" element={<InterviewPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/management" element={<ManagementPage />} />
         <Route path="/result/:id" element={<ResultPage />} />
       </Routes>
     </AppRouterProvider>
