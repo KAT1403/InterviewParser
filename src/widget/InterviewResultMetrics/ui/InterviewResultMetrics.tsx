@@ -21,7 +21,7 @@ export default function InterviewResultMetrics({
   const handleDelete = async () => {
     try {
       await interviewApi.deleteInterview(data.interviewId);
-      window.location.href = "/";
+      window.location.href = "/management";
     } catch (error) {
       console.error("Failed to delete interview:", error);
     }
@@ -43,16 +43,16 @@ export default function InterviewResultMetrics({
           <p>Are you sure you want to delete this interview?</p>
           <div className={styles.modalActions}>
             <Button
-              onClick={() => setIsModalOpen(false)}
-              className={styles.modalButtonSecondary}
-            >
-              No
-            </Button>
-            <Button
               onClick={handleDelete}
               className={styles.modalButtonPrimary}
             >
               Yes
+            </Button>
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              className={styles.modalButtonSecondary}
+            >
+              No
             </Button>
           </div>
         </div>
