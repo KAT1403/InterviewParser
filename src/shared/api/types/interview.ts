@@ -103,3 +103,20 @@ export interface MockInterviewStatusHistory {
   created_at: string;
   updated_at: string;
 }
+
+export interface MockInterviewQA {
+  id: number;
+  mock_interview_id: number;
+  seq_number: number;
+  question: string;
+  object_name: string;
+  candidate_answer: string;
+  is_answered: boolean;
+  score: number | null;
+  feedback: string | null;
+  created_at: string;
+}
+
+export interface AnswerMockInterviewQARequest {
+  file: Blob;
+}

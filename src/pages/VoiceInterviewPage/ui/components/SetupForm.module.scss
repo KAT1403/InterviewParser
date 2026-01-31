@@ -1,0 +1,88 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 673px;
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  color: #92929d;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.bigarea {
+  min-width: 673px;
+  min-height: 200px;
+  border-radius: 20px;
+  border: 1px solid #e2e2ea;
+  background: #fafafb;
+  padding: 18px 20px;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.smallarea {
+  width: 324px;
+  height: 52px;
+  border-radius: 20px;
+  border: 1px solid #e2e2ea;
+  background: #fafafb;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+.select {
+  width: 324px;
+  height: 52px;
+  border-radius: 20px;
+  border: 1px solid #e2e2ea;
+  background: #fafafb;
+  padding: 0 20px;
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  gap: 25px;
+}
+
+.startButton {
+  border-radius: 20px;
+  background: #000cf9;
+  width: 256px;
+  height: 56px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.startButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.errorText {
+  color: #ff3b30;
+  font-size: 12px;
+}

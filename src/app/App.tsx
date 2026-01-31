@@ -6,6 +6,7 @@ import AnalyticsPage from "@/pages/AnalyticsPage";
 import ProfilePage from "@/pages/ProfilePage";
 import ResultPage from "@/pages/ResultPage";
 import ManagementPage from "@/pages/ManagementPage";
+import VoiceInterviewPage from "@/pages/VoiceInterviewPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/management" element={<ManagementPage />} />
         <Route path="/result/:id" element={<ResultPage />} />
+        <Route path="/voice-interview/:id?" element={<VoiceInterviewPage />} />
       </Routes>
     </AppRouterProvider>
   );

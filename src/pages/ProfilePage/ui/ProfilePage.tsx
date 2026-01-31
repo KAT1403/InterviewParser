@@ -2,7 +2,7 @@ import Header from "@/widget/Header";
 import styles from "./ProfilePage.module.scss";
 import ProfileInfo from "@/widget/ProfileInfo";
 
-export default function InterviewPage() {
+export default function ProfilePage() {
   return (
     <div className={styles.container}>
       <Header />

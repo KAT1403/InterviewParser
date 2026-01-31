@@ -61,3 +61,35 @@ export const mapInterviewToResult = (
     })),
   };
 };
+
+import type { MockInterviewResult, MockInterviewQA } from "@/shared/api";
+
+export const mapMockInterviewToResult = (
+  result: MockInterviewResult,
+  qa: MockInterviewQA[],
+  sessionDuration = "15 min",
+): InterviewResultData => {
+  const totalQuestions = qa.length;
+  const answeredQuestions = qa.filter((q) => q.is_answered).length;
+  const averageAccuracy = result.average_accuracy;
+
+  return {
+    interviewId: result.mock_interview_id,
+    totalScore: averageAccuracy,
+    candidateLevel: getCandidateLevel(averageAccuracy),
+    verdict: result.verdict,
+    aiSummary: result.candidate_summary,
+    metrics: {
+      averageAccuracy,
+      answeredQuestions,
+      totalQuestions,
+      confidenceScore: getConfidenceScore(averageAccuracy),
+      sessionDuration,
+    },
+    questions: qa.map((item) => ({
+      id: item.id,
+      title: item.question,
+      score: item.score || 0,
+    })),
+  };
+};

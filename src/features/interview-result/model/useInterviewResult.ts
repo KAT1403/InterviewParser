@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { interviewApi } from "@/shared/api";
 import {
-  mapInterviewToResult,
+  mapMockInterviewToResult,
   type InterviewResultData,
 } from "@/entities/interview";
 
@@ -28,13 +28,21 @@ export const useInterviewResult = (id?: string): UseInterviewResultState => {
         setLoading(true);
         setError(null);
 
-        const apiResult = await interviewApi.getInterview(Number(id));
-        const transformedResult = mapInterviewToResult(apiResult);
+        const interviewId = Number(id);
+
+        const [apiResult, qa] = await Promise.all([
+          interviewApi.getMockInterviewResult(interviewId),
+          interviewApi.getMockInterviewQA(interviewId),
+        ]);
+
+        const transformedResult = mapMockInterviewToResult(apiResult, qa);
 
         setResult(transformedResult);
       } catch (fetchError) {
-        console.error("Ошибка запроса:", fetchError);
-        setError("Не удалось загрузить результат интервью");
+        console.error("Request Error:", fetchError);
+        setError(
+          "Failed to load interview result (maybe it is still being generated)",
+        );
         setResult(null);
       } finally {
         setLoading(false);

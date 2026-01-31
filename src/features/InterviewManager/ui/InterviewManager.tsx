@@ -1,24 +1,13 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import styles from "./InterviewManager.module.scss";
-import { interviewApi } from "@/shared/api";
 import { Link } from "react-router-dom";
-
-interface TableData {
-  id: number;
-  date: string;
-  questions: number;
-  answered: number;
-  totalQuestions: number;
-  avgAccuracy: number;
-}
+import { useMockInterviewList } from "../model/useMockInterviewList";
 
 type SortKey = "date" | "avgAccuracy";
 type SortDirection = "asc" | "desc";
 
 export default function InterviewManager() {
-  const [interviews, setInterviews] = useState<TableData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { interviews, isLoading, error } = useMockInterviewList();
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
   const [startDate, setStartDate] = useState<string>("");
@@ -30,45 +19,6 @@ export default function InterviewManager() {
     setSortKey(key);
     setSortDirection(newDirection);
   };
-
-  useEffect(() => {
-    const fetchInterviews = async () => {
-      try {
-        setIsLoading(true);
-        const data = await interviewApi.getInterviews();
-        const formattedData: TableData[] = data.map((item) => {
-          const answeredQuestions = item.qa.filter(
-            (q) => q.full_answer && q.accuracy > 0,
-          );
-          const totalAccuracy = answeredQuestions.reduce(
-            (sum, q) => sum + q.accuracy,
-            0,
-          );
-          const avgAccuracy =
-            answeredQuestions.length > 0
-              ? Math.round(totalAccuracy / answeredQuestions.length)
-              : 0;
-
-          return {
-            id: item.id,
-            date: new Date(item.created_at).toLocaleDateString("ru-RU"),
-            questions: item.qa.length,
-            answered: answeredQuestions.length,
-            totalQuestions: item.qa.length,
-            avgAccuracy: avgAccuracy,
-          };
-        });
-        setInterviews(formattedData);
-      } catch (e) {
-        setError("Failed to fetch interviews");
-        console.error(e);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchInterviews();
-  }, []);
 
   const displayedInterviews = useMemo(() => {
     let filteredInterviews = [...interviews];
@@ -179,7 +129,11 @@ export default function InterviewManager() {
                     <td>{`${interview.answered} / ${interview.totalQuestions} (${Math.round((interview.answered / interview.totalQuestions) * 100)}%)`}</td>
                     <td>{`${interview.avgAccuracy}%`}</td>
                     <td>
-                      <Link to={`/result/${interview.id}`}>View →</Link>
+                      {interview.status === "finished" ? (
+                        <Link to={`/result/${interview.id}`}>View →</Link>
+                      ) : (
+                        <span style={{ color: "orange" }}>In Progress</span>
+                      )}
                     </td>
                   </tr>
                 ))

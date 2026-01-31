@@ -20,7 +20,7 @@ export default function InterviewResultMetrics({
 
   const handleDelete = async () => {
     try {
-      await interviewApi.deleteInterview(data.interviewId);
+      await interviewApi.deleteMockInterview(data.interviewId);
       window.location.href = "/management";
     } catch (error) {
       console.error("Failed to delete interview:", error);

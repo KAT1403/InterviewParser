@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  padding: 20px;
+  background: white;
+}
+
+.loading {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  padding: 40px;
+}
+
+.aiSection {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #000cf9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0 auto 20px;
+}
+
+.question {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  min-height: 60px;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 50px;
+}
+
+.bar {
+  width: 4px;
+  background: #000cf9;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.recordBtn {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: #000cf9;
+  color: white;
+  transition: all 0.2s;
+}
+
+.recordBtn.recording {
+  background: #d32f2f;
+  animation: pulse 1.5s infinite;
+}
+
+.status {
+  font-size: 18px;
+  color: #666;
+}
+
+.progress {
+  color: #888;
+  font-size: 14px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(211, 47, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+  }
+}
