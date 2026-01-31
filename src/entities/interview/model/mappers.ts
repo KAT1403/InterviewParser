@@ -59,6 +59,7 @@ export const mapInterviewToResult = (
       title: item.question,
       score: item.accuracy,
     })),
+    isLegacy: true,
   };
 };
 

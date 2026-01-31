@@ -16,6 +16,11 @@ import type {
 const api = createAppApiService();
 
 export const interviewApi = {
+  async getInterview(id: number): Promise<InterviewWithQA> {
+    const response = await api.get<InterviewWithQA>(`/interview/${id}`);
+    return response.data;
+  },
+
   async getInterviews(filters?: DateFilter): Promise<InterviewWithQA[]> {
     const response = await api.get<InterviewWithQA[]>("/interview", {
       params: filters,
@@ -181,6 +186,22 @@ export const interviewApi = {
       null,
       {
         params: { force },
+      },
+    );
+    return response.data;
+  },
+  async uploadInterviewFile(
+    file: File,
+  ): Promise<{ interview_id: number; id: number }> {
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await api.post<{ interview_id: number; id: number }>(
+      "/interview/upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
     );
     return response.data;

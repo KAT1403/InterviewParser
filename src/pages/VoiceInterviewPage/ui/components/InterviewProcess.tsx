@@ -18,6 +18,8 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
   const [loadingQuestions, setLoadingQuestions] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [sessionTime, setSessionTime] = useState(0);
+  const [transcription, setTranscription] = useState("");
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -29,7 +31,12 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
   const finishIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      setSessionTime((prev) => prev + 1);
+    }, 1000);
+
     return () => {
+      clearInterval(timer);
       if (pollingIntervalRef.current) clearInterval(pollingIntervalRef.current);
       if (finishIntervalRef.current) clearInterval(finishIntervalRef.current);
       if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
@@ -117,8 +124,51 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
     onFinish,
   ]);
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+  const recognitionRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
+    ) {
+      const SpeechRecognition =
+        (window as any).SpeechRecognition ||
+        (window as any).webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = true;
+      recognitionRef.current.interimResults = true;
+      recognitionRef.current.lang = "en-US"; 
+
+      recognitionRef.current.onresult = (event: any) => {
+        let interimTranscript = "";
+        let finalTranscript = "";
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+        setTranscription(() => {
+          return finalTranscript + interimTranscript;
+        });
+      };
+
+      recognitionRef.current.onerror = (event: any) => {
+        console.error("Speech recognition error", event.error);
+      };
+    }
+  }, []);
+
   const startRecording = async () => {
     try {
+      setTranscription("");
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const recorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
 
@@ -127,6 +177,9 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
       };
 
       recorder.onstop = async () => {
+        if (recognitionRef.current) {
+          recognitionRef.current.stop();
+        }
         const blob = new Blob(chunksRef.current, { type: "audio/webm" });
         chunksRef.current = [];
         await submitAnswer(blob);
@@ -136,6 +189,10 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
       mediaRecorderRef.current = recorder;
       recorder.start(250);
       setIsRecording(true);
+
+      if (recognitionRef.current) {
+        recognitionRef.current.start();
+      }
     } catch (err) {
       console.error("Microphone access denied", err);
       alert("Microphone access is required.");
@@ -151,6 +208,7 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
 
   const submitAnswer = async (blob: Blob) => {
     setIsProcessing(true);
+    setTranscription("Processing answer...");
     try {
       if (questions[currentQuestionIndex]) {
         await interviewApi.answerMockInterviewQA({
@@ -159,6 +217,7 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
           file: blob,
         });
         setCurrentQuestionIndex((prev) => prev + 1);
+        setTranscription("");
       }
     } catch (error) {
       console.error("Failed to submit answer", error);
@@ -194,41 +253,66 @@ export const InterviewProcess: React.FC<InterviewProcessProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.aiSection}>
-        <div className={styles.avatar}>AI</div>
+      <div className={styles.connectionHeader}>
+        <span>Connection: Active</span>
+        <span>Session time: {formatTime(sessionTime)}</span>
+      </div>
+
+      <div className={styles.card}>
+        <div className={styles.aiHeader}>
+          <img src="/img/ChatGPT.png" alt="AI" className={styles.aiIcon} />
+          <h2 className={styles.aiTitle}>AI Interviewer</h2>
+        </div>
+
         <h3 className={styles.question}>{currentQ.question}</h3>
 
-        <audio ref={audioPlayerRef} controls style={{ display: "none" }} />
+        <div className={styles.visualizerSection}>
+          <div className={styles.visualizerLabel}>
+            {isRecording
+              ? "Listening..."
+              : "Preparing to listen to your answer..."}
+          </div>
+          <div className={styles.waveform}>
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={i}
+                className={styles.bar}
+                style={{
+                  height: isRecording ? `${Math.random() * 30 + 4}px` : "4px",
+                  animationDuration: `${0.2 + Math.random() * 0.3}s`,
+                  opacity: isRecording ? 1 : 0.3,
+                }}
+              />
+            ))}
+          </div>
+        </div>
 
-        <div className={styles.waveform}>
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={i}
-              className={styles.bar}
-              style={{
-                height: isRecording ? `${Math.random() * 40 + 10}px` : "4px",
-                animationDuration: `${0.5 + Math.random()}s`,
-              }}
-            />
-          ))}
+        <div className={styles.controls}>
+          {isProcessing ? (
+            <div className={styles.status}>Processing answer...</div>
+          ) : (
+            <button
+              className={`${styles.recordBtn} ${isRecording ? styles.recording : ""}`}
+              onClick={isRecording ? stopRecording : startRecording}
+            >
+              {isRecording ? "Stop recording" : "Start recording"}
+            </button>
+          )}
+        </div>
+
+        <div className={styles.transcriptionSection}>
+          <label className={styles.transcriptionLabel}>
+            Your answer (transcribed):
+          </label>
+          <div className={styles.transcriptionBox}>{transcription}</div>
+        </div>
+
+        <div className={styles.footer}>
+          Question {currentQuestionIndex + 1} of {questions.length}
         </div>
       </div>
 
-      <div className={styles.controls}>
-        {isProcessing ? (
-          <div className={styles.status}>Processing answer...</div>
-        ) : (
-          <button
-            className={`${styles.recordBtn} ${isRecording ? styles.recording : ""}`}
-            onClick={isRecording ? stopRecording : startRecording}
-          >
-            {isRecording ? "Stop Recording" : "Start Recording"}
-          </button>
-        )}
-      </div>
-      <div className={styles.progress}>
-        Question {currentQuestionIndex + 1} of {questions.length}
-      </div>
+      <audio ref={audioPlayerRef} controls style={{ display: "none" }} />
     </div>
   );
 };

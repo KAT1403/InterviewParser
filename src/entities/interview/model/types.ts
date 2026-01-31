@@ -20,4 +20,5 @@ export interface InterviewResultData {
   aiSummary: string;
   metrics: InterviewResultMetrics;
   questions: InterviewResultQuestion[];
+  isLegacy?: boolean;
 }

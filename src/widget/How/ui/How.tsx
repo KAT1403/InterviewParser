@@ -7,34 +7,33 @@ function How() {
       <div className={styles.steps}>
 
         <div className={styles.step}>
-          <h4>Record or Upload</h4>
+          <h4>Step 1</h4>
           <p>
-            Capture audio directly or upload existing interview files in various
-            formats
+            Fill in your candidate details
           </p>
         </div>
 
         <img src="/img/RightArrow.svg" alt="RightArrow" className={styles.image} />
 
         <div className={styles.step}>
-          <h4>AI Transcription</h4>
-          <p>Advanced AI converts speech to text with high accuracy</p>
+          <h4>Step 2</h4>
+          <p>AI analyzes your profile and generates interview questions</p>
         </div>
 
         <img src="/img/RightArrow.svg" alt="RightArrow" className={styles.image} />
 
         <div className={styles.step}>
-          <h4>Smart Analysis</h4>
+          <h4>Step 3</h4>
           <p>
-            Extract questions, evaluate answers, and provide detailed feedback
+            Join the live AI-powered interview
           </p>
         </div>
 
         <img src="/img/RightArrow.svg" alt="RightArrow" className={styles.image} />
 
         <div className={styles.step}>
-          <h4>View Analytics</h4>
-          <p>Track performance trends and improve your interview skills</p>
+          <h4>Step 4</h4>
+          <p>Receive detailed feedback and performance analysis</p>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { interviewApi } from "@/shared/api";
 import {
   mapMockInterviewToResult,
+  mapInterviewToResult,
   type InterviewResultData,
 } from "@/entities/interview";
 
@@ -39,6 +40,18 @@ export const useInterviewResult = (id?: string): UseInterviewResultState => {
 
         setResult(transformedResult);
       } catch (fetchError) {
+        try {
+          const interviewId = Number(id);
+          const legacyInterview = await interviewApi.getInterview(interviewId);
+          if (legacyInterview) {
+            const transformedResult = mapInterviewToResult(legacyInterview);
+            setResult(transformedResult);
+            return;
+          }
+        } catch (legacyError) {
+          console.error("Legacy fetch failed", legacyError);
+        }
+
         console.error("Request Error:", fetchError);
         setError(
           "Failed to load interview result (maybe it is still being generated)",

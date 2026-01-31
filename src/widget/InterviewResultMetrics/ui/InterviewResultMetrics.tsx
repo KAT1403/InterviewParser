@@ -30,12 +30,14 @@ export default function InterviewResultMetrics({
     <div>
       <div className={styles.pageTitle}>
         <h1>Interview Results</h1>
-        <Button
-          onClick={() => setIsModalOpen(true)}
-          className={styles.deleteButton}
-        >
-          Delete this interview
-        </Button>
+        {!data.isLegacy && (
+          <Button
+            onClick={() => setIsModalOpen(true)}
+            className={styles.deleteButton}
+          >
+            Delete this interview
+          </Button>
+        )}
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

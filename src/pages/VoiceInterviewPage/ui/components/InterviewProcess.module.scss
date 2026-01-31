@@ -2,105 +2,177 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 400px;
   width: 100%;
-  padding: 20px;
-  background: white;
+  max-width: 800px;
+  margin: 40px auto 0;
+  font-family: "Inter", sans-serif;
 }
 
-.loading {
-  font-size: 18px;
-  color: #666;
-  text-align: center;
+.connectionHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #000cf9;
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+  background-color: white;
+}
+
+.card {
+  width: 100%;
+  border: 1px solid #000cf9;
+  border-radius: 40px;
   padding: 40px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0, 12, 249, 0.05);
 }
 
-.aiSection {
-  text-align: center;
-  margin-bottom: 40px;
+.aiHeader {
   width: 100%;
-}
-
-.avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #000cf9;
-  color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 40px;
+}
+
+.aiIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.aiTitle {
   font-size: 24px;
-  margin: 0 auto 20px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
 }
 
 .question {
-  font-size: 24px;
-  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
   color: #1a1a1a;
   margin-bottom: 30px;
-  min-height: 60px;
+  line-height: 1.5;
+}
+
+.visualizerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.visualizerLabel {
+  font-size: 14px;
+  color: #666;
 }
 
 .waveform {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  height: 50px;
+  gap: 3px;
+  height: 48px;
 }
 
 .bar {
-  width: 4px;
-  background: #000cf9;
-  border-radius: 2px;
+  width: 3px;
+  background: #1a1a1a;
+  border-radius: 10px;
   transition: height 0.1s ease;
+  min-height: 4px;
 }
 
 .controls {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .recordBtn {
-  padding: 16px 32px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
   background: #000cf9;
   color: white;
-  transition: all 0.2s;
+  border: none;
+  padding: 16px 60px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 12, 249, 0.2);
+}
+
+.recordBtn:hover {
+  background: #0000e0;
 }
 
 .recordBtn.recording {
-  background: #d32f2f;
-  animation: pulse 1.5s infinite;
+  background: #000cf9;
+  animation: pulse 2s infinite;
 }
 
-.status {
-  font-size: 18px;
-  color: #666;
+.transcriptionSection {
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 24px;
+  flex: 1;
 }
 
-.progress {
-  color: #888;
+.transcriptionLabel {
   font-size: 14px;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.transcriptionBox {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  color: #666;
+  background: #fcfcfc;
+  resize: none;
+  border-left: 4px solid #e2e2e2; /* subtle indication */
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4);
+    box-shadow: 0 0 0 0 rgba(0, 12, 249, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(211, 47, 47, 0);
+    box-shadow: 0 0 0 10px rgba(0, 12, 249, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+    box-shadow: 0 0 0 0 rgba(0, 12, 249, 0);
   }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
 }
