@@ -47,4 +47,4 @@ The interview flow is managed through a centralized state machine:
    npm install
    npm run dev
    
-## Author: Spectr123(KAT)
+## Author: KAT1403
